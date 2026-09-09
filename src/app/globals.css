@@ -1,0 +1,198 @@
+@import "tailwindcss";
+
+/*
+ * airobotics@berkeley — "instrument panel" design system.
+ *
+ * Structure follows the reference Framer site (nav → hero → partner strip →
+ * gradient band → eyebrow'd feature sections → CTA band → deep footer), but the
+ * surface is inverted to a carbon canvas: Berkeley blue and California gold are
+ * the only chromatic accents, everything else is hairline, mono, and instrument
+ * grey. Content column is 1080px; cards take a small radius and sit on their
+ * own gutters, closer to the reference's soft-cornered blocks.
+ */
+:root {
+  /* Canvas */
+  --void: #05070c;
+  --panel: #0a0f19;
+  --panel-hi: #101725;
+  --grid: rgba(150, 190, 255, 0.055);
+
+  /* Type */
+  --ink: #e9eefa;
+  --ink-dim: #97a3b8;
+  --ink-faint: #5d6a80;
+
+  /* Accents — from the airobotics@berkeley mark */
+  --berkeley: #1f5fbf;
+  --berkeley-bright: #4d9bff;
+  --berkeley-deep: #003262;
+  --gold: #fdb515;
+  --gold-warm: #ffd166;
+
+  --hairline: rgba(200, 220, 255, 0.11);
+  --hairline-strong: rgba(200, 220, 255, 0.22);
+}
+
+@theme inline {
+  --color-void: var(--void);
+  --color-panel: var(--panel);
+  --color-panel-hi: var(--panel-hi);
+  --color-ink: var(--ink);
+  --color-ink-dim: var(--ink-dim);
+  --color-ink-faint: var(--ink-faint);
+  --color-berkeley: var(--berkeley);
+  --color-berkeley-bright: var(--berkeley-bright);
+  --color-berkeley-deep: var(--berkeley-deep);
+  --color-gold: var(--gold);
+  --color-gold-warm: var(--gold-warm);
+  --color-hairline: var(--hairline);
+  --color-hairline-strong: var(--hairline-strong);
+
+  --font-display: var(--font-bricolage);
+  --font-sans: var(--font-manrope);
+  --font-mono: var(--font-azeret);
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--void);
+}
+
+body {
+  background: var(--void);
+  color: var(--ink);
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 450;
+  letter-spacing: -0.011em;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--gold);
+  color: #0a0f19;
+}
+
+/* ---------------------------------------------------------------- type ---- */
+
+.display {
+  font-family: var(--font-bricolage), system-ui, sans-serif;
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+}
+
+/* Telemetry label: mono, uppercase, wide tracking. Used for section indices,
+   card kickers, and anything that should read as an instrument readout. */
+.tele {
+  font-family: var(--font-azeret), ui-monospace, monospace;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.lede {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink-dim);
+  letter-spacing: -0.005em;
+}
+
+/* Gold-into-blue wash for the one or two words that carry each headline. */
+.charged {
+  background: linear-gradient(100deg, var(--gold-warm), var(--berkeley-bright));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ------------------------------------------------------------ surfaces ---- */
+
+/* Fine engineering grid, used as a section or hero underlay. */
+.gridfield {
+  background-image:
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* ------------------------------------------------------------- marquee ---- */
+
+/* Affiliation logos scroll continuously; the track holds the list twice so the
+   -50% loop is seamless. */
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.marquee-track {
+  animation: marquee 44s linear infinite;
+  will-change: transform;
+}
+
+.marquee-viewport:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-viewport {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 6%,
+    #000 94%,
+    transparent
+  );
+}
+
+/* ----------------------------------------------------------------- tiles --- */
+
+/* Platform tiles breathe slowly — enough motion to read as alive, not enough
+   to compete with the copy beside them. */
+@keyframes tile-drift {
+  0%,
+  100% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(1.07) translate3d(1.5%, -1.5%, 0);
+  }
+}
+
+.tile-drift {
+  animation: tile-drift 22s ease-in-out infinite;
+}
+
+.tile-drift:nth-child(2n) {
+  animation-duration: 27s;
+  animation-direction: reverse;
+}
+
+/* --------------------------------------------------------------- misc ----- */
+
+/* Underline that draws in from the left on hover — used on all inline links. */
+.link-draw {
+  background-image: linear-gradient(var(--gold), var(--gold));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;
+  transition: background-size 0.3s ease;
+}
+
+.link-draw:hover {
+  background-size: 100% 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .marquee-track,
+  .tile-drift {
+    animation: none;
+  }
+}
