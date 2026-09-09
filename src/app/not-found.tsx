@@ -15,7 +15,7 @@ export const metadata: Metadata = {
  */
 export default function NotFound() {
   const elsewhere = [
-    { label: "Teams", href: "/teams" },
+    { label: "Projects", href: "/teams" },
     { label: "The roster", href: "/team" },
     { label: "Apply", href: APPLY_HREF },
   ];

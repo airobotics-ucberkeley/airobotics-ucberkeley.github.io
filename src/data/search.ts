@@ -43,7 +43,7 @@ const PAGES: SearchDoc[] = [
       "about who we are applied competitive autonomy robot learning student organization rso berkeley pillars compete research educate",
   },
   {
-    title: "Teams",
+    title: "Projects",
     href: "/teams",
     kind: "Page",
     keywords: `projects competition teams sponsored projects drone humanoid platforms wanted ${PLATFORMS.map(

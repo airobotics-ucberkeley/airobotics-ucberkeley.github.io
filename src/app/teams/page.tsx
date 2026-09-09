@@ -11,9 +11,9 @@ import { TeamTabs } from "@/components/TeamTabs";
 import { APPLY_HREF, PLATFORMS, TEAMS } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "Teams",
+  title: "Projects",
   description:
-    "Teams at airobotics@berkeley: the drone racing competition team, plus sponsored projects with Tensr and Innate.",
+    "Projects at airobotics@berkeley: the drone racing competition team, plus sponsored projects with Tensr and Innate.",
 };
 
 const COMPETITION = TEAMS.filter((t) => t.kind === "Competition team");
@@ -38,7 +38,7 @@ export default function TeamsPage() {
 
           <div className="mx-auto w-full max-w-[1080px] px-6">
             <h1 className="display max-w-[16ch] text-[clamp(2.1rem,5.4vw,4rem)]">
-              <span className="charged">Teams.</span>
+              <span className="charged">Projects.</span>
             </h1>
 
             <div className="mt-9">

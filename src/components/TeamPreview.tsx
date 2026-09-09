@@ -4,7 +4,7 @@ import Link from "next/link";
 import type { Team } from "@/data/site";
 
 /**
- * Team card used on the Teams index. Every card carries the same parts in the
+ * Team card used on the Projects index. Every card carries the same parts in the
  * same order — visual, status, name, summary, logo chips, tags — so the
  * competition team and the sponsored projects read as one set.
  *

@@ -65,11 +65,11 @@ export const CONTACT_HREF = SPONSOR_HREF;
 
 export const NAV = [
   { label: "Home", href: "/" },
-  { label: "Teams", href: "/teams" },
   { label: "Members", href: "/team" },
   { label: "Media", href: "/media" },
   { label: "Hackathons", href: "/hackathons" },
   { label: "Resources", href: "/resources" },
+  { label: "Projects", href: "/teams" },
   { label: "Support", href: SPONSOR_HREF },
 ] as const;
 
@@ -1050,7 +1050,7 @@ export const FOOTER_LINKS = [
     heading: "Group",
     links: [
       { label: "Mission", href: "/#mission" },
-      { label: "Teams", href: "/teams" },
+      { label: "Projects", href: "/teams" },
       { label: "Members", href: "/team" },
       { label: "Media", href: "/media" },
       { label: "Hackathons", href: "/hackathons" },
