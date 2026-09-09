@@ -1,0 +1,73 @@
+# Builds the static export and publishes it to GitHub Pages.
+#
+# The repo is airobotics-ucberkeley.github.io, an organisation page, so what
+# lands here is served from the domain root — no basePath, no /repo prefix.
+#
+# One-time setup in the repository: Settings → Pages → Source → "GitHub
+# Actions". Without that the deploy step fails with a 404 on the Pages API,
+# which is the only part of this that cannot live in the file.
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  # So a broken build is caught on the PR rather than on the site.
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+# Read the repo, mint the token the deploy step exchanges for Pages access.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deploy at a time, and never cancel one in flight: a half-published site
+# is worse than a slightly stale one.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # `npm ci` rather than `npm install`: the lockfile is the build.
+      - run: npm ci
+
+      # `next build` type-checks as part of the build and fails on an error, so
+      # there is no separate tsc step — and a standalone one would not work
+      # anyway, since the types `next build` generates into `.next/types` are
+      # what `LayoutProps` and friends resolve to.
+      - run: npm run build
+
+      - run: npm run lint
+
+      # Pages runs the output through Jekyll unless told not to, and Jekyll
+      # drops every directory whose name starts with an underscore — which is
+      # all of Next's `_next/`.
+      - run: touch out/.nojekyll
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    # A pull request gets the build above and stops there; only main publishes.
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
