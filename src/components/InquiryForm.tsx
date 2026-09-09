@@ -114,8 +114,7 @@ export function InquiryForm({
       <div className="rounded-lg border border-hairline bg-panel/40 p-8">
         <p className="display text-[clamp(1.35rem,2.5vw,1.9rem)]">Thank you.</p>
         <p className="mt-4 text-sm leading-relaxed text-ink-dim">
-          Your inquiry is in. We read every one and reply from a Berkeley
-          address.
+          Your message has been sent.
         </p>
       </div>
     );
@@ -208,12 +207,11 @@ export function InquiryForm({
         ))}
       </div>
 
-      {/* Someone reading the site should be told the form is closed, not told
-          how to fix it — that half only shows while developing. */}
+      {/* Someone reading the site is told the form is closed, not told how to
+          fix it — that half only shows while developing. */}
       {!CONFIGURED ? (
         <p className="mt-8 rounded-md border border-gold/40 bg-gold/5 px-4 py-3 text-sm text-ink-dim">
-          This form is not open yet, so nothing sent here would reach us. It
-          goes live at the start of the semester — please check back then.
+          This form is not open yet, so nothing sent here would reach us.
           {process.env.NODE_ENV !== "production" ? (
             <>
               {" "}

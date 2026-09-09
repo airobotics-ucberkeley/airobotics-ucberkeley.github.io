@@ -22,35 +22,31 @@ export const metadata: Metadata = {
  * "Contact" rather than "Support" on the nav because that is what someone
  * scans for when they want to reach us, and everything the old label promised
  * — ways to give, tiers — is still on the page under the form.
+ *
+ * The form is general: a name, an address to answer, a subject, and a blank
+ * box. The subject list stands in for the pages that used to have forms of
+ * their own — sponsoring, donating, press — so one inbox still knows what a
+ * message is about.
  */
 const FIELDS: readonly Field[] = [
   { name: "name", label: "Your name", type: "text", required: true },
   { name: "email", label: "Email", type: "email", required: true },
   {
-    name: "organization",
-    label: "Company",
-    type: "text",
-    placeholder: "Leave blank if you are giving as an individual",
-  },
-  {
-    name: "provides",
-    label: "What you can provide",
-    type: "checkboxes",
-    options: ["Funding", "Hardware", "Cloud compute", "Mentorship", "Travel"],
-  },
-  {
-    name: "amount",
-    label: "Amount or item",
-    type: "text",
-    placeholder: "$250, a monthly amount, two Jetsons",
-  },
-  {
-    name: "message",
-    label: "What you want in return",
-    type: "textarea",
+    name: "subject",
+    label: "Subject",
+    type: "select",
     required: true,
-    placeholder: "Logo placement, a hackathon, recruiting, or nothing at all.",
+    options: [
+      "General question",
+      "Sponsorship",
+      "Donation",
+      "Hardware or compute",
+      "Joining the club",
+      "Press",
+      "Something else",
+    ],
   },
+  { name: "message", label: "Message", type: "textarea", required: true },
 ];
 
 const AUDIENCES = ["Companies", "Individuals"] as const;
