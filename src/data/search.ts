@@ -70,10 +70,10 @@ const PAGES: SearchDoc[] = [
     keywords: `hackathon weekend build event ${HACKATHON.cadence} ${HACKATHON.timing} ${HACKATHON.blurb}`,
   },
   {
-    title: "Support",
+    title: "Contact",
     href: "/sponsor",
     kind: "Page",
-    keywords: `sponsor sponsorship donation donate give giving gift tiers funding partners companies matching employer contact ${SUPPORT_WAYS.map(
+    keywords: `contact support get in touch email reach us sponsor sponsorship donation donate give giving gift tiers funding partners companies matching employer press collaboration ${SUPPORT_WAYS.map(
       (w) => `${w.name} ${w.body}`,
     ).join(" ")} ${SPONSOR_TIERS.map(
       (t) => `${t.name} ${t.amount} ${t.audience}`,

@@ -8,15 +8,20 @@ import { SectionHead } from "@/components/SectionHead";
 import { SPONSOR_TIERS, SUPPORT_WAYS } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "Support",
+  title: "Contact",
   description:
-    "Sponsor or donate to airobotics@berkeley — hardware, compute, and getting a student team and its robots to competitions.",
+    "Get in touch with airobotics@berkeley — sponsorship, hardware, compute, and getting a student team and its robots to competitions.",
 };
 
 /**
- * One page for sponsoring and donating. They were two pages with two forms and
- * one inbox; a company and an individual are answering the same questions, so
- * they now fill in the same form.
+ * The contact page, and the only way in other than applying. Sponsoring and
+ * donating were two pages with two forms and one inbox; a company, an
+ * individual and someone with a general question are all answering the same
+ * questions, so they now fill in the same form.
+ *
+ * "Contact" rather than "Support" on the nav because that is what someone
+ * scans for when they want to reach us, and everything the old label promised
+ * — ways to give, tiers — is still on the page under the form.
  */
 const FIELDS: readonly Field[] = [
   { name: "name", label: "Your name", type: "text", required: true },
@@ -50,7 +55,7 @@ const FIELDS: readonly Field[] = [
 
 const AUDIENCES = ["Companies", "Individuals"] as const;
 
-export default function SupportPage() {
+export default function ContactPage() {
   return (
     <>
       <Nav />
@@ -72,13 +77,13 @@ export default function SupportPage() {
 
           <div className="mx-auto w-full max-w-[1080px] px-6">
             <h1 className="display max-w-[16ch] text-[clamp(2.1rem,5.4vw,4rem)]">
-              <span className="charged">Support.</span>
+              <span className="charged">Contact.</span>
             </h1>
 
             <div className="mt-10">
               <InquiryForm
                 fields={FIELDS}
-                subject="Support — airobotics@berkeley"
+                subject="Contact — airobotics@berkeley"
                 action="Send"
               />
             </div>

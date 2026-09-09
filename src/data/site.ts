@@ -31,7 +31,7 @@ export const SITE = {
 
 /**
  * Inquiries are handled on the site, not through a personal inbox: every Apply
- * and Support button lands on a page with a form.
+ * and Contact button lands on a page with a form.
  *
  * Submissions post as JSON to FormSubmit, which forwards them to the club
  * address below, so the site stays static with no backend of our own.
@@ -60,7 +60,10 @@ export const isLive = (href: string | undefined): href is string =>
 export const APPLY_HREF = "/apply";
 export const SPONSOR_HREF = "/sponsor";
 export const DONATE_HREF = SPONSOR_HREF;
-/** General questions — research areas, collaboration, press. */
+/**
+ * Everything that is not an application: sponsorship, donations, research
+ * areas, collaboration, press. One inbox, so one page and one form.
+ */
 export const CONTACT_HREF = SPONSOR_HREF;
 
 export const NAV = [
@@ -70,7 +73,7 @@ export const NAV = [
   { label: "Hackathons", href: "/hackathons" },
   { label: "Resources", href: "/resources" },
   { label: "Projects", href: "/teams" },
-  { label: "Support", href: SPONSOR_HREF },
+  { label: "Contact", href: CONTACT_HREF },
 ] as const;
 
 /**
@@ -1061,9 +1064,8 @@ export const FOOTER_LINKS = [
     heading: "Join",
     links: [
       { label: "Apply", href: APPLY_HREF },
-      { label: "Support", href: SPONSOR_HREF },
-      { label: "GitHub", href: "https://github.com/airobotics-ucberkeley" },
       { label: "Contact", href: CONTACT_HREF },
+      { label: "GitHub", href: "https://github.com/airobotics-ucberkeley" },
     ],
   },
 ] as const;
